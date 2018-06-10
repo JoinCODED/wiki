@@ -28,6 +28,5 @@ class PageViewTestCase(TestCase):
         response = self.client.get(detail_url)
         self.assertContains(response, self.page_1.title)
         self.assertContains(response, self.page_1.content)
-        self.assertContains(response, self.page_1.last_update)
         self.assertTemplateUsed(response, 'detail.html')
         self.assertEqual(response.status_code, 200)
