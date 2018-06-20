@@ -20,7 +20,6 @@ class PageViewTestCase(TestCase):
         response = self.client.get(list_url)
         for page in Page.objects.all():
             self.assertContains(response, page.title)
-        self.assertTemplateUsed(response, 'list.html')
         self.assertEqual(response.status_code, 200)
 
     def test_detail_view(self):
@@ -28,5 +27,4 @@ class PageViewTestCase(TestCase):
         response = self.client.get(detail_url)
         self.assertContains(response, self.page_1.title)
         self.assertContains(response, self.page_1.content)
-        self.assertTemplateUsed(response, 'detail.html')
         self.assertEqual(response.status_code, 200)
