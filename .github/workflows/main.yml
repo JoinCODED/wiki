@@ -1,0 +1,16 @@
+name: main
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: ok test
+      run: |
+        pip3 install -r requirements.txt
+        python3 manage.py test > stdout.txt 2> stderr.txt
+    - name: set perc
+      if: always()
+      run: |
+        line=$(head -n 1 stderr.txt )
+        curl -d "username=${{ github.actor }}&repo=${{ github.repository}}&test=$line" -X POST https://warehouse.joincoded.com/github/task/pushed/python/
