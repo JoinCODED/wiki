@@ -13,4 +13,4 @@ jobs:
       if: always()
       run: |
         line=$(head -n 1 stderr.txt )
-        curl -d "username=${{ github.actor }}&repo=${{ github.repository}}&test=$line" -X POST https://warehouse.joincoded.com/github/task/pushed/python/
+        curl -d "username=${{ github.actor }}&repo=${{ github.repository}}&test=$line" -X POST https://warehouse-api.joincoded.com/github/task/pushed/python/
